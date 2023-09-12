@@ -21,7 +21,7 @@ def updateDFWithEMA(dfMap):
         #find signal
         conditions = [(dfMap[sym]["emaShort"] < dfMap[sym]["emaMid"]) & (dfMap[sym]["emaMid"] < dfMap[sym]["emaLong"]) & (dfMap[sym]["slopeEMAShort"] < 0) & (dfMap[sym]["slopeEMAMid"] < 0) & (dfMap[sym]["slopeEMALong"] < 0),
                       (dfMap[sym]["emaShort"] > dfMap[sym]["emaMid"]) & (dfMap[sym]["emaMid"] > dfMap[sym]["emaLong"]) & (dfMap[sym]["slopeEMAShort"] > 0) & (dfMap[sym]["slopeEMAMid"] > 0) & (dfMap[sym]["slopeEMALong"] > 0)]
-        choices = [1,2] #1 is up trend, 2 is downtrend, 0 is inconclusive
+        choices = [1,2] #1 is down trend, 2 is up trend, 0 is inconclusive
         dfMap[sym]["emaSignal"] = np.select(conditions, choices, default = 0)
 
         totalSig = [0 for _ in range(len(dfMap[sym]))]
